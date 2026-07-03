@@ -7,37 +7,38 @@ This document lists all known BShield security checks and detection mechanisms o
 
 **Table of Contents:**
 
-- [Compilation of BShield Security Checks \& Detection Mechanisms on Android](#compilation-of-bshield-security-checks--detection-mechanisms-on-android)
-  - [Error Code 1 (Modified Application Detected)](#error-code-1-modified-application-detected)
-  - [Error Code 2 (Virtual Machine / Emulator Detected)](#error-code-2-virtual-machine--emulator-detected)
-  - [Error Code 3 (Application List Detection)](#error-code-3-application-list-detection)
-  - [Error Code 4 (Debug Tool Detection, Rare)](#error-code-4-debug-tool-detection-rare)
-  - [Error Code 5 (Root Detection)](#error-code-5-root-detection)
-    - [System Properties](#system-properties)
-    - [Injected Memory Map Detection](#injected-memory-map-detection)
-    - [Kernel Enforcing Status](#kernel-enforcing-status)
-    - [Root Manager Package Name Detection](#root-manager-package-name-detection)
-    - [Custom Launcher Modification Module Detection](#custom-launcher-modification-module-detection)
-    - [Bootloader Unlock Check](#bootloader-unlock-check)
-    - [Suspicious Mounts](#suspicious-mounts)
-    - [\[UNCONFIRMED\] KSU/AP Module Proc Image Loop Detection](#unconfirmed-ksuap-module-proc-image-loop-detection)
-  - [Error Code 6 (Unlocked Bootloader Detected) Currently Unused or Possibly Merged into Code 5 Bootloader Check](#error-code-6-unlocked-bootloader-detected-currently-unused-or-possibly-merged-into-code-5-bootloader-check)
-  - [Error Code 7 (Suspicious Application Detected) Rarely Appears](#error-code-7-suspicious-application-detected-rarely-appears)
-  - [Error Code 8 (Application Running in a Different Space Than the Original Device Space)](#error-code-8-application-running-in-a-different-space-than-the-original-device-space)
-  - [Error Code 10 (ADB Debug Mode Detected)](#error-code-10-adb-debug-mode-detected)
-  - [Error Code 11 (Developer Mode Detected)](#error-code-11-developer-mode-detected)
-  - [Error Code 12 (Custom ROM Detected)](#error-code-12-custom-rom-detected)
-  - [Error Code 13 (Accessibility Service Running Detected)](#error-code-13-accessibility-service-running-detected)
-  - [Error Code 14 (Application Installed from Unknown Source Detected)](#error-code-14-application-installed-from-unknown-source-detected)
-  - [Error Code 15 (Malicious Application Detected)](#error-code-15-malicious-application-detected)
-  - [Error Code 16 (Virtual Keyboard Not in Trusted List)](#error-code-16-virtual-keyboard-not-in-trusted-list)
-  - [Error Code 17 (Application Installed in Work Profile)](#error-code-17-application-installed-in-work-profile)
-  - [Error Code 18 (Simulated Input Detected)](#error-code-18-simulated-input-detected)
-  - [Error Code 19 (Proxy Mode Enabled on Device)](#error-code-19-proxy-mode-enabled-on-device)
-  - [Error Code 20 (Application Does Not Support MacOS)](#error-code-20-application-does-not-support-macos)
-  - [Error Code 21 (Possible Root Compromise Detected)](#error-code-21-possible-root-compromise-detected)
-  - [Error Code 22 (System Hook Detected)](#error-code-22-system-hook-detected)
-  - [Error Code 23 (VPN Connection Detected)](#error-code-23-vpn-connection-detected)
+<!-- TOC -->
+- [Error Code 1 (Modified Application Detected)](#error-code-1-modified-application-detected)
+- [Error Code 2 (Virtual Machine / Emulator Detected)](#error-code-2-virtual-machine--emulator-detected)
+- [Error Code 3 (Application List Detection and PIF inject by KOW)](#error-code-3-application-list-detection-and-pif-inject-by-kow)
+- [Error Code 4 (Debug Tool Detection, Rare)](#error-code-4-debug-tool-detection-rare)
+- [Error Code 5 (Root Detection)](#error-code-5-root-detection)
+  - [System Properties](#system-properties)
+  - [Injected Memory Map Detection](#injected-memory-map-detection)
+  - [Kernel Enforcing Status](#kernel-enforcing-status)
+  - [Root Manager Package Name Detection](#root-manager-package-name-detection)
+  - [Custom Launcher Modification Module Detection](#custom-launcher-modification-module-detection)
+  - [Bootloader Unlock Check](#bootloader-unlock-check)
+  - [Suspicious Mounts](#suspicious-mounts)
+  - [[UNCONFIRMED] KSU/AP Module Proc Image Loop Detection](#unconfirmed-ksuap-module-proc-image-loop-detection)
+- [Error Code 6 (Unlocked Bootloader Detected) Currently Unused or Possibly Merged into Code 5 Bootloader Check](#error-code-6-unlocked-bootloader-detected-currently-unused-or-possibly-merged-into-code-5-bootloader-check)
+- [Error Code 7 (Suspicious Application Detected) Rarely Appears](#error-code-7-suspicious-application-detected-rarely-appears)
+- [Error Code 8 (Application Running in a Different Space Than the Original Device Space)](#error-code-8-application-running-in-a-different-space-than-the-original-device-space)
+- [Error Code 10 (ADB Debug Mode Detected)](#error-code-10-adb-debug-mode-detected)
+- [Error Code 11 (Developer Mode Detected)](#error-code-11-developer-mode-detected)
+- [Error Code 12 (Custom ROM Detected)](#error-code-12-custom-rom-detected)
+- [Error Code 13 (Accessibility Service Running Detected)](#error-code-13-accessibility-service-running-detected)
+- [Error Code 14 (Application Installed from Unknown Source Detected)](#error-code-14-application-installed-from-unknown-source-detected)
+- [Error Code 15 (Malicious Application Detected)](#error-code-15-malicious-application-detected)
+- [Error Code 16 (Virtual Keyboard Not in Trusted List)](#error-code-16-virtual-keyboard-not-in-trusted-list)
+- [Error Code 17 (Application Installed in Work Profile)](#error-code-17-application-installed-in-work-profile)
+- [Error Code 18 (Simulated Input Detected)](#error-code-18-simulated-input-detected)
+- [Error Code 19 (Proxy Mode Enabled on Device)](#error-code-19-proxy-mode-enabled-on-device)
+- [Error Code 20 (Application Does Not Support MacOS)](#error-code-20-application-does-not-support-macos)
+- [Error Code 21 (Possible Root Compromise Detected)](#error-code-21-possible-root-compromise-detected)
+- [Error Code 22 (System Hook Detected)](#error-code-22-system-hook-detected)
+- [Error Code 23 (VPN Connection Detected)](#error-code-23-vpn-connection-detected)
+<!-- /TOC -->
 
 ## Error Code 1 (Modified Application Detected)
 
@@ -57,11 +58,11 @@ This error occurs when you install the application inside a virtual machine or e
 **Fix:**  
 Do not install the application inside a virtual machine or emulator (obviously :v).
 
-## Error Code 3 (Application List Detection)
+## Error Code 3 (Application List Detection and PIF inject by KOW)
 
 **Reference link:** <https://s.bshield.io/?code=3>
 
-This error occurs when you install a root manager, suspicious applications, or LSPosed modules on the device.
+This error occurs when you install a root manager, suspicious applications, LSPosed modules or using PIF Inject on your current device. 
 
 Below is a list of applications currently detected by BShield (there may be more; these are only the ones confirmed through testing. You can request updates in the Issues tab):
 

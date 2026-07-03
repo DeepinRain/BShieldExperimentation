@@ -7,37 +7,38 @@ Tài liệu này liệt kê tất cả các cơ chế kiểm tra, phát hiện l
 
 **Mục lục:**
 
-- [Tổng hợp những kiểm tra, phát hiện lỗ hổng bảo mật của BShield trên Android](#tổng-hợp-những-kiểm-tra-phát-hiện-lỗ-hổng-bảo-mật-của-bshield-trên-android)
-  - [Mã lỗi 1 (Phát hiện ứng dụng đã bị chỉnh sửa)](#mã-lỗi-1-phát-hiện-ứng-dụng-đã-bị-chỉnh-sửa)
-  - [Mã lỗi 2 (Phát hiện cài đặt trên máy ảo, giả lập)](#mã-lỗi-2-phát-hiện-cài-đặt-trên-máy-ảo-giả-lập)
-  - [Mã lỗi 3 (Phát hiện danh sách ứng dụng)](#mã-lỗi-3-phát-hiện-danh-sách-ứng-dụng)
-  - [Mã lỗi 4 (Phát hiện công cụ debug, hiếm)](#mã-lỗi-4-phát-hiện-công-cụ-debug-hiếm)
-  - [Mã lỗi 5 (Phát hiện root)](#mã-lỗi-5-phát-hiện-root)
-    - [Đặc tính hệ thống](#đặc-tính-hệ-thống)
-    - [Phát hiện bộ nhớ map đã bị injected](#phát-hiện-bộ-nhớ-map-đã-bị-injected)
-    - [Trạng thái Enforcing của Kernel](#trạng-thái-enforcing-của-kernel)
-    - [Phát hiện tên gói của trình quản lý root](#phát-hiện-tên-gói-của-trình-quản-lý-root)
-    - [Phát hiện dùng module thay đổi launcher tùy chỉnh](#phát-hiện-dùng-module-thay-đổi-launcher-tùy-chỉnh)
-    - [Kiểm tra bootloader có unlock hay không](#kiểm-tra-bootloader-có-unlock-hay-không)
-    - [Mount đáng ngờ](#mount-đáng-ngờ)
-    - [\[CHƯA XÁC NHẬN\] Phát hiện vòng lặp image proc của module KSU/AP](#chưa-xác-nhận-phát-hiện-vòng-lặp-image-proc-của-module-ksuap)
-  - [Mã lỗi 6 (Phát hiện bootloader mở khóa) hiện tại không sử dụng hoặc có thể đã đưa vào chung code 5 mục Kiểm tra bootloader](#mã-lỗi-6-phát-hiện-bootloader-mở-khóa-hiện-tại-không-sử-dụng-hoặc-có-thể-đã-đưa-vào-chung-code-5-mục-kiểm-tra-bootloader)
-  - [Mã lỗi 7 (Phát hiện ứng dụng đáng ngờ) hiếm khi xuất hiện](#mã-lỗi-7-phát-hiện-ứng-dụng-đáng-ngờ-hiếm-khi-xuất-hiện)
-  - [Mã lỗi 8 (Phát hiện ứng dụng đang được chạy ở chế độ không gian khác khác với không gian gốc của máy)](#mã-lỗi-8-phát-hiện-ứng-dụng-đang-được-chạy-ở-chế-độ-không-gian-khác-khác-với-không-gian-gốc-của-máy)
-  - [Mã lỗi 10 (Phát hiện chế độ debug ADB)](#mã-lỗi-10-phát-hiện-chế-độ-debug-adb)
-  - [Mã lỗi 11 (Phát hiện chế độ nhà phát triển)](#mã-lỗi-11-phát-hiện-chế-độ-nhà-phát-triển)
-  - [Mã lỗi 12 (Phát hiện thiết bị đang sử dụng ROM tùy chỉnh)](#mã-lỗi-12-phát-hiện-thiết-bị-đang-sử-dụng-rom-tùy-chỉnh)
-  - [Mã lỗi 13 (Phát hiện thiết bị đang chạy dịch vụ trợ năng đang chạy)](#mã-lỗi-13-phát-hiện-thiết-bị-đang-chạy-dịch-vụ-trợ-năng-đang-chạy)
-  - [Mã lỗi 14 (Phát hiện ứng dụng cài từ nguồn không xác định)](#mã-lỗi-14-phát-hiện-ứng-dụng-cài-từ-nguồn-không-xác-định)
-  - [Mã lỗi 15 (Phát hiện ứng dụng độc hại)](#mã-lỗi-15-phát-hiện-ứng-dụng-độc-hại)
-  - [Mã lỗi 16 (Bàn phím ảo không trong danh sách tin cậy)](#mã-lỗi-16-bàn-phím-ảo-không-trong-danh-sách-tin-cậy)
-  - [Mã lỗi 17 (Ứng dụng cài trong hồ sơ công việc)](#mã-lỗi-17-ứng-dụng-cài-trong-hồ-sơ-công-việc)
-  - [Mã lỗi 18 (Đang dùng nhập liệu mô phỏng)](#mã-lỗi-18-đang-dùng-nhập-liệu-mô-phỏng)
-  - [Mã lỗi 19 (Đang dùng chế độ proxy trên thiết bị)](#mã-lỗi-19-đang-dùng-chế-độ-proxy-trên-thiết-bị)
-  - [Mã lỗi 20 (Ứng dụng không hỗ trợ hệ điều hành MacOS)](#mã-lỗi-20-ứng-dụng-không-hỗ-trợ-hệ-điều-hành-macos)
-  - [Mã lỗi 21 (Phát hiện có vẻ đã bị bẻ khóa (root))](#mã-lỗi-21-phát-hiện-có-vẻ-đã-bị-bẻ-khóa-root)
-  - [Mã lỗi 22 (Thiết bị của bạn có vẻ đã bị can thiệp hệ thống (hook))](#mã-lỗi-22-thiết-bị-của-bạn-có-vẻ-đã-bị-can-thiệp-hệ-thống-hook)
-  - [Mã lỗi 23 (Thiết bị đang kết nối VPN)](#mã-lỗi-23-hiết-bị-đang-kết-nối-vpn)
+<!-- TOC -->
+- [Mã lỗi 1 (Phát hiện ứng dụng đã bị chỉnh sửa)](#mã-lỗi-1-phát-hiện-ứng-dụng-đã-bị-chỉnh-sửa)
+- [Mã lỗi 2 (Phát hiện cài đặt trên máy ảo, giả lập)](#mã-lỗi-2-phát-hiện-cài-đặt-trên-máy-ảo-giả-lập)
+- [Mã lỗi 3 (Phát hiện danh sách ứng dụng và PIF Inject của KOW)](#mã-lỗi-3-phát-hiện-danh-sách-ứng-dụng-và-pif-inject-của-kow)
+- [Mã lỗi 4 (Phát hiện công cụ debug, hiếm)](#mã-lỗi-4-phát-hiện-công-cụ-debug-hiếm)
+- [Mã lỗi 5 (Phát hiện root)](#mã-lỗi-5-phát-hiện-root)
+  - [Đặc tính hệ thống](#đặc-tính-hệ-thống)
+  - [Phát hiện bộ nhớ map đã bị injected](#phát-hiện-bộ-nhớ-map-đã-bị-injected)
+  - [Trạng thái Enforcing của Kernel](#trạng-thái-enforcing-của-kernel)
+  - [Phát hiện tên gói của trình quản lý root](#phát-hiện-tên-gói-của-trình-quản-lý-root)
+  - [Phát hiện dùng module thay đổi launcher tùy chỉnh](#phát-hiện-dùng-module-thay-đổi-launcher-tùy-chỉnh)
+  - [Kiểm tra bootloader có unlock hay không](#kiểm-tra-bootloader-có-unlock-hay-không)
+  - [Mount đáng ngờ](#mount-đáng-ngờ)
+  - [[CHƯA XÁC NHẬN] Phát hiện vòng lặp image proc của module KSU/AP](#chưa-xác-nhận-phát-hiện-vòng-lặp-image-proc-của-module-ksuap)
+- [Mã lỗi 6 (Phát hiện bootloader mở khóa) hiện tại không sử dụng hoặc có thể đã đưa vào chung code 5 mục Kiểm tra bootloader](#mã-lỗi-6-phát-hiện-bootloader-mở-khóa-hiện-tại-không-sử-dụng-hoặc-có-thể-đã-đưa-vào-chung-code-5-mục-kiểm-tra-bootloader)
+- [Mã lỗi 7 (Phát hiện ứng dụng đáng ngờ) hiếm khi xuất hiện](#mã-lỗi-7-phát-hiện-ứng-dụng-đáng-ngờ-hiếm-khi-xuất-hiện)
+- [Mã lỗi 8 (Phát hiện ứng dụng đang được chạy ở chế độ không gian khác khác với không gian gốc của máy)](#mã-lỗi-8-phát-hiện-ứng-dụng-đang-được-chạy-ở-chế-độ-không-gian-khác-khác-với-không-gian-gốc-của-máy)
+- [Mã lỗi 10 (Phát hiện chế độ debug ADB)](#mã-lỗi-10-phát-hiện-chế-độ-debug-adb)
+- [Mã lỗi 11 (Phát hiện chế độ nhà phát triển)](#mã-lỗi-11-phát-hiện-chế-độ-nhà-phát-triển)
+- [Mã lỗi 12 (Phát hiện thiết bị đang sử dụng ROM tùy chỉnh)](#mã-lỗi-12-phát-hiện-thiết-bị-đang-sử-dụng-rom-tùy-chỉnh)
+- [Mã lỗi 13 (Phát hiện thiết bị đang chạy dịch vụ trợ năng đang chạy)](#mã-lỗi-13-phát-hiện-thiết-bị-đang-chạy-dịch-vụ-trợ-năng-đang-chạy)
+- [Mã lỗi 14 (Phát hiện ứng dụng cài từ nguồn không xác định)](#mã-lỗi-14-phát-hiện-ứng-dụng-cài-từ-nguồn-không-xác-định)
+- [Mã lỗi 15 (Phát hiện ứng dụng độc hại)](#mã-lỗi-15-phát-hiện-ứng-dụng-độc-hại)
+- [Mã lỗi 16 (Bàn phím ảo không trong danh sách tin cậy)](#mã-lỗi-16-bàn-phím-ảo-không-trong-danh-sách-tin-cậy)
+- [Mã lỗi 17 (Ứng dụng cài trong hồ sơ công việc)](#mã-lỗi-17-ứng-dụng-cài-trong-hồ-sơ-công-việc)
+- [Mã lỗi 18 (Đang dùng nhập liệu mô phỏng)](#mã-lỗi-18-đang-dùng-nhập-liệu-mô-phỏng)
+- [Mã lỗi 19 (Đang dùng chế độ proxy trên thiết bị)](#mã-lỗi-19-đang-dùng-chế-độ-proxy-trên-thiết-bị)
+- [Mã lỗi 20 (Ứng dụng không hỗ trợ hệ điều hành MacOS)](#mã-lỗi-20-ứng-dụng-không-hỗ-trợ-hệ-điều-hành-macos)
+- [Mã lỗi 21 (Phát hiện có vẻ đã bị bẻ khóa (root))](#mã-lỗi-21-phát-hiện-có-vẻ-đã-bị-bẻ-khóa-root)
+- [Mã lỗi 22 (Thiết bị của bạn có vẻ đã bị can thiệp hệ thống (hook))](#mã-lỗi-22-thiết-bị-của-bạn-có-vẻ-đã-bị-can-thiệp-hệ-thống-hook)
+- [Mã lỗi 23 (Thiết bị đang kết nối VPN)](#mã-lỗi-23-thiết-bị-đang-kết-nối-vpn)
+<!-- /TOC -->
 
 ## Mã lỗi 1 (Phát hiện ứng dụng đã bị chỉnh sửa)
 
@@ -57,11 +58,11 @@ Lỗi này xảy ra khi bạn cài đặt ứng dụng trong máy ảo, giả l�
 **Cách khắc phục:**  
 Không cài đặt ứng dụng trong máy ảo, giả lập (hiển nhiên :v).
 
-## Mã lỗi 3 (Phát hiện danh sách ứng dụng)
+## Mã lỗi 3 (Phát hiện danh sách ứng dụng và PIF Inject của KOW)
 
 **Link tham khảo:** <https://s.bshield.io/?code=3>
 
-Lỗi này xảy ra khi bạn cài đặt trình quản lý root hoặc các ứng dụng đáng ngờ, module lsposed trên thiết bị.
+Lỗi này xảy ra khi bạn cài đặt trình quản lý root hoặc các ứng dụng đáng ngờ, module lsposed trên thiết bị hoặc đang dùng module PIF Inject.
 
 Dưới đây là danh sách các ứng dụng mà BShield hiện đang phát hiện (có thể còn nhiều hơn; đây chỉ là những ứng dụng đã được xác nhận qua thử nghiệm. Bạn có thể yêu cầu cập nhật trong tab Issues):
 
@@ -80,6 +81,8 @@ Bạn hãy sử dụng module KSU/Magisk và module LSposed dưới đây (ưu t
 để ẩn các ứng dụng này.
 
 Hoặc nếu bạn không dùng root, đơn giản là đừng cài đặt trình quản lý root trên thiết bị.
+
+Chuyển sang dùng PIF Fork của osm0sis nếu bạn vẫn thấy lỗ 3 xuất hiện: https://github.com/osm0sis/PlayIntegrityFork
 
 ## Mã lỗi 4 (Phát hiện công cụ debug, hiếm)
 
