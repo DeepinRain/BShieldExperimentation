@@ -3,7 +3,7 @@
 This document lists all known BShield security checks and detection mechanisms on Android devices, along with possible bypass methods as of July 5th, 2026. If you discover additional detection mechanisms, feel free to report them in the Issues tab.
 
 > [!CAUTION]
-> **This project is for educational purposes only. The goal is to highlight weaknesses in current security solutions and encourage the development of better, more reliab5thle alternatives. Use this information responsibly. DO NOT use it for malicious purposes. I am not responsible for any actions taken by users of this module or project.**
+> **This project is for educational purposes only. The goal is to highlight weaknesses in current security solutions and encourage the development of better, more reliable alternatives. Use this information responsibly. DO NOT use it for malicious purposes. I am not responsible for any actions taken by users of this module or project.**
 
 **Table of Contents:**
 
