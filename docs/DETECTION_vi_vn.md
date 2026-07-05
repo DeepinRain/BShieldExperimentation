@@ -1,6 +1,6 @@
 # Tổng hợp những kiểm tra, phát hiện lỗ hổng bảo mật của BShield trên Android
 
-Tài liệu này liệt kê tất cả các cơ chế kiểm tra, phát hiện lỗ hổng bảo mật của Bshield trên thiết bị Android và cách để bypass các cơ chế trên tính đến ngày 8 tháng 2 năm 2026. Nếu bạn phát hiện thêm các cơ chế phát hiện khác, hãy thoải mái báo cáo trong tab Issues.
+Tài liệu này liệt kê tất cả các cơ chế kiểm tra, phát hiện lỗ hổng bảo mật của Bshield trên thiết bị Android và cách để bypass các cơ chế trên tính đến ngày 5 tháng 7 năm 2026. Nếu bạn phát hiện thêm các cơ chế phát hiện khác, hãy thoải mái báo cáo trong tab Issues.
 
 > [!CAUTION]
 > **Dự án này chỉ phục vụ mục đích giáo dục. Mục tiêu là làm nổi bật những điểm yếu của các giải pháp bảo mật hiện tại và khuyến khích phát triển những giải pháp thay thế tốt hơn, đáng tin cậy hơn. Hãy sử dụng thông tin này một cách có trách nhiệm. KHÔNG sử dụng cho mục đích độc hại. Tôi không chịu trách nhiệm cho bất kỳ hành động nào được thực hiện bởi người dùng của module hoặc dự án này.**
@@ -8,6 +8,7 @@ Tài liệu này liệt kê tất cả các cơ chế kiểm tra, phát hiện l
 **Mục lục:**
 
 <!-- TOC -->
+- [JNI bị Crash ở những phiên bản Android 16 QPR1 hoặc mới hơn (app bị đóng ngay lập tức)](#jni-bị-crash-ở-những-phiên-bản-android-16-qpr1-hoặc-mới-hơn-app-bị-đóng-ngay-lập-tức)
 - [Mã lỗi 1 (Phát hiện ứng dụng đã bị chỉnh sửa)](#mã-lỗi-1-phát-hiện-ứng-dụng-đã-bị-chỉnh-sửa)
 - [Mã lỗi 2 (Phát hiện cài đặt trên máy ảo, giả lập)](#mã-lỗi-2-phát-hiện-cài-đặt-trên-máy-ảo-giả-lập)
 - [Mã lỗi 3 (Phát hiện danh sách ứng dụng và PIF Inject của KOW)](#mã-lỗi-3-phát-hiện-danh-sách-ứng-dụng-và-pif-inject-của-kow)
@@ -39,6 +40,19 @@ Tài liệu này liệt kê tất cả các cơ chế kiểm tra, phát hiện l
 - [Mã lỗi 22 (Thiết bị của bạn có vẻ đã bị can thiệp hệ thống (hook))](#mã-lỗi-22-thiết-bị-của-bạn-có-vẻ-đã-bị-can-thiệp-hệ-thống-hook)
 - [Mã lỗi 23 (Thiết bị đang kết nối VPN)](#mã-lỗi-23-thiết-bị-đang-kết-nối-vpn)
 <!-- /TOC -->
+
+## JNI bị Crash ở những phiên bản Android 16 QPR1 hoặc mới hơn (app bị đóng ngay lập tức)
+
+> [!NOTE]
+> Thời gian gần đây, chúng tôi có để ý đến một crash kì lạ trên những app chạy BShield khi ta update phiên bản android lên 16 QPR1+. Sau 3 tháng nghiên cứu, chúng tôi đã phát hiện nguyên nhân đầu tiên đến từ các custom recovery cũ.
+>
+> Trong bản cập nhật 16 QPR1+, chúng tôi tin rằng cách mà A16 QPR1+ quản lý bộ nhớ đã khác hẳn so với các custom recovery cũ. Điều này không chỉ gây ảnh hưởng đến các app dùng BShield mà còn một số app ngoại lệ nữa.
+>
+> Nếu như bạn biết thêm về JNI crash trong app dùng BShield, hãy báo cáo cho chúng tôi qua tab [Issues](https://github.com/DeepLunaria/BShieldExperimentation).
+
+Crash này xảy ra khi thiết bị sử dụng các custom recovery cũ để flash ROM A16 QPR1+ rom, kernel,....
+
+Nếu như bạn đã lỡ flash A16 QPR1+ bằng các custom recovery cũ, chúng tôi khuyên bạn nên clean flash lại ROM bằng recovery đi theo ROM để tránh tình trạng này. 
 
 ## Mã lỗi 1 (Phát hiện ứng dụng đã bị chỉnh sửa)
 

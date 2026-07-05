@@ -1,13 +1,14 @@
 # Compilation of BShield Security Checks & Detection Mechanisms on Android
 
-This document lists all known BShield security checks and detection mechanisms on Android devices, along with possible bypass methods as of February 8, 2026. If you discover additional detection mechanisms, feel free to report them in the Issues tab.
+This document lists all known BShield security checks and detection mechanisms on Android devices, along with possible bypass methods as of July 5th, 2026. If you discover additional detection mechanisms, feel free to report them in the Issues tab.
 
 > [!CAUTION]
-> **This project is for educational purposes only. The goal is to highlight weaknesses in current security solutions and encourage the development of better, more reliable alternatives. Use this information responsibly. DO NOT use it for malicious purposes. I am not responsible for any actions taken by users of this module or project.**
+> **This project is for educational purposes only. The goal is to highlight weaknesses in current security solutions and encourage the development of better, more reliab5thle alternatives. Use this information responsibly. DO NOT use it for malicious purposes. I am not responsible for any actions taken by users of this module or project.**
 
 **Table of Contents:**
 
 <!-- TOC -->
+- [JNI Crash in A16 QPR1 device or newer version (app immediately crash)](#jni-crash-in-a16-qpr1-device-or-newer-version-app-immediately-crash)
 - [Error Code 1 (Modified Application Detected)](#error-code-1-modified-application-detected)
 - [Error Code 2 (Virtual Machine / Emulator Detected)](#error-code-2-virtual-machine--emulator-detected)
 - [Error Code 3 (Application List Detection and PIF inject by KOW)](#error-code-3-application-list-detection-and-pif-inject-by-kow)
@@ -39,6 +40,19 @@ This document lists all known BShield security checks and detection mechanisms o
 - [Error Code 22 (System Hook Detected)](#error-code-22-system-hook-detected)
 - [Error Code 23 (VPN Connection Detected)](#error-code-23-vpn-connection-detected)
 <!-- /TOC -->
+
+## JNI Crash in A16 QPR1 device or newer version (app immediately crash)
+
+> [!NOTE]
+> Recently, we noticed a weird crash on BShield when we update android version to A16 QPR1+. After 3 months of research, we can finally find the first cause for this problem is from old custom recovery. 
+>
+> In A16 QPR1+ update, we believe how A16 QPR1 handles storage now different from older recovery which causing a problem not only BShield but also other apps.
+>
+> If you know more about this JNI crash, let us know in the [Issues](https://github.com/DeepLunaria/BShieldExperimentation) tab.
+
+This crash occurs when device use older custom recovery to flash A16 QPR1+ rom, kernel,....
+
+If you're already flash A16 QPR1+ with old custom recovery, we suggest you have to clean flash the ROM using recovery that comes with ROM to resolve the issue.
 
 ## Error Code 1 (Modified Application Detected)
 
