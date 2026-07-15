@@ -1,6 +1,6 @@
 # Tổng hợp những kiểm tra, phát hiện lỗ hổng bảo mật của BShield trên Android
 
-Tài liệu này liệt kê tất cả các cơ chế kiểm tra, phát hiện lỗ hổng bảo mật của Bshield trên thiết bị Android và cách để bypass các cơ chế trên tính đến ngày 5 tháng 7 năm 2026. Nếu bạn phát hiện thêm các cơ chế phát hiện khác, hãy thoải mái báo cáo trong tab Issues.
+Tài liệu này liệt kê tất cả các cơ chế kiểm tra, phát hiện lỗ hổng bảo mật của Bshield trên thiết bị Android và cách để bypass các cơ chế trên tính đến ngày 15 tháng 7 năm 2026. Nếu bạn phát hiện thêm các cơ chế phát hiện khác, hãy thoải mái báo cáo trong tab Issues.
 
 > [!CAUTION]
 > **Dự án này chỉ phục vụ mục đích giáo dục. Mục tiêu là làm nổi bật những điểm yếu của các giải pháp bảo mật hiện tại và khuyến khích phát triển những giải pháp thay thế tốt hơn, đáng tin cậy hơn. Hãy sử dụng thông tin này một cách có trách nhiệm. KHÔNG sử dụng cho mục đích độc hại. Tôi không chịu trách nhiệm cho bất kỳ hành động nào được thực hiện bởi người dùng của module hoặc dự án này.**
@@ -322,6 +322,9 @@ Hiện tại có app FPT Shop, NCB iziMobile, MyVIB là check thêm cái này (<
 
 **Cách khắc phục:**
 Cài đặt [JingMatrix/TEESimulator](https://github.com/JingMatrix/TEESimulator), thêm tên gói vào `target.txt`:
+
+Dựa vào [nghiên cứu của team FPT Night-Wolf](https://blogs.night-wolf.io/ai-assisted-on-rasp-analysis), ta biết được rằng mã 12 còn kiểm tra thêm 
+`ro.build.display.id` và `ro.build.keys` xem có chứa `test-keys` không. Bạn có thể dùng module của chúng tôi như một cách tạm thời sửa lỗi này.
 
 ## Mã lỗi 13 (Phát hiện thiết bị đang chạy dịch vụ trợ năng đang chạy)
 
