@@ -321,6 +321,8 @@ Currently, FPT Shop, NCB iziMobile, and MyVIB app additionally checks this (<htt
 **Fix:**
 Install [JingMatrix/TEESimulator](https://github.com/JingMatrix/TEESimulator), then add the package name to `target.txt`.
 
+Based on [FPT Night-Wolf team's suggestion](https://blogs.night-wolf.io/ai-assisted-on-rasp-analysis), it appears that code 12 also check for `ro.build.display.id` and `ro.build.keys` to see if any test keys. You can use our module as a temporary fix for this issues.
+
 ## Error Code 13 (Accessibility Service Running Detected)
 
 **Reference link:** <https://s.bshield.io/?code=13>
