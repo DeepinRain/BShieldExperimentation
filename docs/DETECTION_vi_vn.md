@@ -100,8 +100,8 @@ Chuyển sang dùng PIF Fork của osm0sis nếu bạn vẫn thấy lỗ 3 xuấ
 
 Đối với các bạn dùng Meta Module thì hãy dùng magicmount hoặc hybrid mount để tránh lỗi 3 cũng như lỗi 5 (Chỉ dùng 2 meta module này)
 
-Magicmount module: https://github.com/KernelSU-Modules-Repo/meta-mm/releases
-Hybrid mount: https://github.com/Hybrid-Mount/meta-hybrid_mount/releases
+- Magicmount module: https://github.com/KernelSU-Modules-Repo/meta-mm/releases
+- Hybrid mount: https://github.com/Hybrid-Mount/meta-hybrid_mount/releases
 
 ## Mã lỗi 4 (Phát hiện công cụ debug, hiếm)
 
@@ -244,8 +244,8 @@ Ví dụ, nó có thể báo "Suspicious Mount".
 
 **KSU 3:**
 - Đối với KSU 3 trở lên thì phải dùng Meta module magicmount module hoặc hybrid mount để tránh bị lộ mount 
-Magicmount module: https://github.com/KernelSU-Modules-Repo/meta-mm/releases
-Hybrid mount: https://github.com/Hybrid-Mount/meta-hybrid_mount/releases
+- Magicmount module: https://github.com/KernelSU-Modules-Repo/meta-mm/releases
+- Hybrid mount: https://github.com/Hybrid-Mount/meta-hybrid_mount/releases
 
 ### [CHƯA XÁC NHẬN] Phát hiện vòng lặp image proc của module KSU/AP
 
