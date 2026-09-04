@@ -11,7 +11,7 @@ Tài liệu này liệt kê tất cả các cơ chế kiểm tra, phát hiện l
 - [JNI bị Crash ở những phiên bản Android 16 QPR1 hoặc mới hơn (app bị đóng ngay lập tức)](#jni-bị-crash-ở-những-phiên-bản-android-16-qpr1-hoặc-mới-hơn-app-bị-đóng-ngay-lập-tức)
 - [Mã lỗi 1 (Phát hiện ứng dụng đã bị chỉnh sửa)](#mã-lỗi-1-phát-hiện-ứng-dụng-đã-bị-chỉnh-sửa)
 - [Mã lỗi 2 (Phát hiện cài đặt trên máy ảo, giả lập)](#mã-lỗi-2-phát-hiện-cài-đặt-trên-máy-ảo-giả-lập)
-- [Mã lỗi 3 (Phát hiện danh sách ứng dụng và PIF Inject của KOW)](#mã-lỗi-3-phát-hiện-danh-sách-ứng-dụng-và-pif-inject-của-kow)
+- [Mã lỗi 3 (Phát hiện danh sách ứng dụng và PIF Inject của KOW và META module)](#mã-lỗi-3-phát-hiện-danh-sách-ứng-dụng-và-pif-inject-của-kow)
 - [Mã lỗi 4 (Phát hiện công cụ debug, hiếm)](#mã-lỗi-4-phát-hiện-công-cụ-debug-hiếm)
 - [Mã lỗi 5 (Phát hiện root)](#mã-lỗi-5-phát-hiện-root)
   - [Đặc tính hệ thống](#đặc-tính-hệ-thống)
@@ -97,6 +97,11 @@ Bạn hãy sử dụng module KSU/Magisk và module LSposed dưới đây (ưu t
 Hoặc nếu bạn không dùng root, đơn giản là đừng cài đặt trình quản lý root trên thiết bị.
 
 Chuyển sang dùng PIF Fork của osm0sis nếu bạn vẫn thấy lỗ 3 xuất hiện: https://github.com/osm0sis/PlayIntegrityFork
+
+Đối với các bạn dùng Meta Module thì hãy dùng magicmount hoặc hybrid mount để tránh lỗi 3 cũng như lỗi 5 (Chỉ dùng 2 meta module này)
+
+Magicmount module: https://github.com/KernelSU-Modules-Repo/meta-mm/releases
+Hybrid mount: https://github.com/Hybrid-Mount/meta-hybrid_mount/releases
 
 ## Mã lỗi 4 (Phát hiện công cụ debug, hiếm)
 
@@ -236,6 +241,11 @@ Ví dụ, nó có thể báo "Suspicious Mount".
 - Nếu file zip của module có `mount --bind`, hãy cẩn thận vì có thể kích hoạt lỗi này. Yêu cầu dev sử dụng [phương pháp này thay thế](https://kernelsu.org/guide/module.html).
 - KSU 3.0 và một số phiên bản mới của APatch, Magisk đã xử lý tốt hơn vấn đề này.
 - Trên một số thiết bị, ReZygisk không thể unmount một số path. Nếu bạn gặp lỗi này, hãy báo cho tôi.
+
+**KSU 3:**
+- Đối với KSU 3 trở lên thì phải dùng Meta module magicmount module hoặc hybrid mount để tránh bị lộ mount 
+Magicmount module: https://github.com/KernelSU-Modules-Repo/meta-mm/releases
+Hybrid mount: https://github.com/Hybrid-Mount/meta-hybrid_mount/releases
 
 ### [CHƯA XÁC NHẬN] Phát hiện vòng lặp image proc của module KSU/AP
 
